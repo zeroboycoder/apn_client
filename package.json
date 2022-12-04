@@ -8,8 +8,15 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.1",
     "@mdi/font": "^7.0.96",
+    "@vue/apollo-composable": "^4.0.0-beta.1",
+    "@vue/apollo-option": "^4.0.0-alpha.20",
     "core-js": "^3.8.3",
+    "graphql": "^16.6.0",
+    "graphql-tag": "^2.12.6",
+    "pinia": "^2.0.27",
+    "pinia-plugin-persistedstate": "^3.0.1",
     "roboto-fontface": "*",
     "tiny-slider": "^2.9.4",
     "vue": "^3.2.13",

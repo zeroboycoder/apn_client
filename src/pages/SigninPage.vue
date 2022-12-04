@@ -35,17 +35,29 @@
             </v-row>
             <v-row>
               <v-col>
-                <v-text-field label="Email:*" />
+                <v-text-field
+                  label="Email:*"
+                  type="email"
+                  v-model="emailfromUser"
+                />
               </v-col>
             </v-row>
             <v-row>
               <v-col>
-                <v-text-field label="Password:*" />
+                <v-text-field
+                  label="Password:*"
+                  type="password"
+                  v-model="password"
+                />
               </v-col>
             </v-row>
             <v-row>
               <v-col>
-                <v-btn class="text-white" color="var(--simbolo_red)">
+                <v-btn
+                  class="text-white"
+                  color="var(--simbolo_red)"
+                  @click="authAdmin"
+                >
                   SIGN IN
                 </v-btn>
               </v-col>
@@ -70,14 +82,53 @@
 </template>
 
 <script>
+import gql from "graphql-tag";
+import { mapWritableState } from "pinia";
+import { user } from "../store/user";
 import HappyCharacter from "@/components/HappyCharacter.vue";
 
-export default { components: { HappyCharacter } };
+export default {
+  components: { HappyCharacter },
+  data() {
+    return {
+      emailfromUser: null,
+      password: null,
+    };
+  },
+  computed: {
+    ...mapWritableState(user, ["userId", "name", "email"]),
+  },
+  methods: {
+    authAdmin() {
+      this.$apollo
+        .mutate({
+          mutation: gql`
+            mutation AuthAdmin($admin: adminDTO) {
+              authAdmin(admin: $admin)
+            }
+          `,
+          variables: {
+            admin: {
+              email: this.emailfromUser,
+              password: this.password,
+            },
+          },
+        })
+        .then((res) => {
+          this.userId = res.data.authAdmin._id;
+          this.name = res.data.authAdmin.name;
+          this.email = res.data.authAdmin.email;
+          this.$router.push("/");
+        })
+        .catch((err) => console.log(err));
+    },
+  },
+};
 </script>
 
 <style scoped>
 h1 {
-  font: bold 40px/70px made_tommy_bold;
+  font: normal 40px/70px made_tommy_medium;
   letter-spacing: 2px;
 }
 </style>

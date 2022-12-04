@@ -2,7 +2,7 @@
   <v-app>
     <NavBar />
     <router-view> </router-view>
-    <TheFooter />
+    <TheFooter v-if="!disableFooter" />
   </v-app>
 </template>
 
@@ -12,6 +12,17 @@ import NavBar from "./components/Nav/NavBar.vue";
 
 export default {
   components: { NavBar, TheFooter },
+  data() {
+    return {
+      disableFooter: false,
+    };
+  },
+  watch: {
+    $route() {
+      const disableFooterRoutes = ["profile"];
+      this.disableFooter = this.$route.name.includes(disableFooterRoutes);
+    },
+  },
 };
 </script>
 

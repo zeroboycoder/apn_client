@@ -1,11 +1,13 @@
 import * as VueRouter from 'vue-router';
 import HomePage from '../pages/HomePage.vue';
 import CoursePage from '../pages/CoursePage.vue';
-import AddCoursePage from '../pages/AddCoursePage.vue';
 import ProgramPage from '../pages/ProgramPage.vue';
 import AboutPage from '../pages/AboutPage.vue';
 import CategoryPage from '../pages/CategoryPage.vue';
 import ContactPage from '../pages/ContactPage.vue';
+import AddCoursePage from '../pages/AddCoursePage.vue';
+import AddInstructorPage from '../pages/AddInstructorPage.vue';
+import ProfilePage from '../pages/ProfilePage.vue'
 import SigninPage from '../pages/SigninPage.vue';
 
 const router = VueRouter.createRouter({
@@ -20,11 +22,6 @@ const router = VueRouter.createRouter({
             path: "/courses",
             name: "course",
             component: CoursePage
-        },
-        {
-            path: "/add-course",
-            name: "addCourse",
-            component: AddCoursePage
         },
         {
             path: "/programs",
@@ -45,6 +42,21 @@ const router = VueRouter.createRouter({
             path: "/contact",
             name: "contact",
             component: ContactPage
+        },
+        {
+            path: "/add-course",
+            name: "addCourse",
+            component: AddCoursePage
+        },
+        {
+            path: "/add-instructor",
+            name: "addInstructor",
+            component: AddInstructorPage
+        },
+        {
+            path: "/profile",
+            name: "profile",
+            component: ProfilePage
         },
         {
             path: "/signin",

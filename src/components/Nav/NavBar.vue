@@ -22,14 +22,15 @@
           <div>
             <CategoryDropDown title="CATEGORIES" @goTo="goTo" />
           </div>
+          <AddDropdown v-if="isAuth" :title="name" @goTo="goTo" />
           <div
             class="d-flex align-center justify-center contact_us"
             @click="goTo('/contact')"
           >
             CONTACT US
           </div>
-          <div @click="goTo('/signin')">SIGN IN</div>
-          <div @click="goTo('/add-course')">ADD</div>
+
+          <div v-if="!isAuth" @click="goTo('/signin')">SIGN IN</div>
         </v-col>
         <v-col class="d-lg-none text-right">
           <MobileDropdown />
@@ -40,15 +41,24 @@
 </template>
 
 <script>
+import { mapState } from "pinia";
+import { user } from "../../store/user";
 import CategoryDropDown from "./CategoryDropDown.vue";
 import AcadamicDropDown from "./AcadamicDropDown.vue";
+import AddDropdown from "./AddDropDown.vue";
 import MobileDropdown from "./MobileDropdown.vue";
 export default {
-  components: { CategoryDropDown, AcadamicDropDown, MobileDropdown },
+  components: {
+    CategoryDropDown,
+    AcadamicDropDown,
+    AddDropdown,
+    MobileDropdown,
+  },
   data: () => ({
     scrollPosition: null,
   }),
   computed: {
+    ...mapState(user, ["isAuth", "name"]),
     isHomeRoute() {
       return this.$route.path === "/";
     },
