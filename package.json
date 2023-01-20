@@ -1,5 +1,5 @@
 {
-  "name": "simbolo",
+  "name": "apn",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,6 +15,7 @@
     "core-js": "^3.8.3",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
+    "mitt": "^3.0.0",
     "pinia": "^2.0.27",
     "pinia-plugin-persistedstate": "^3.0.1",
     "roboto-fontface": "*",

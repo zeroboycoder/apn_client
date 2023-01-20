@@ -8,6 +8,8 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import vuetify from './plugins/vuetify'
 import { loadFonts } from './plugins/webfontloader'
 import routes from './router/routes'
+import eventBus from "@/assets/js/eventBus";
+import globalComponents from "./components/global/register";
 
 // HTTP connection to the API
 const httpLinnk = createHttpLink({
@@ -42,4 +44,7 @@ app
   .use(routes)
   .use(apolloProvider)
   .use(pinia)
+  .use(globalComponents)
   .mount('#app')
+
+app.config.globalProperties.$eventBus = eventBus;

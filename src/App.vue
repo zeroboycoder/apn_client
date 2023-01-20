@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <NavBar />
-    <router-view> </router-view>
+    <router-view style="padding-top: 60px" />
     <TheFooter v-if="!disableFooter" />
   </v-app>
 </template>
@@ -26,28 +26,22 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap");
 :root {
-  --simbolo_red: #ca4343;
-  --simbolo_red_orange: #e43f3c;
-  --simbolo_gray: #5c5776;
-  --simbolo_dark_blue: #18113c;
+  --apn_red: #ad1111;
+  --apn_gray: #d9d9d9;
+  --apn_white: #fafafa;
+  --apn_blue: #3685b5;
+  --apn_dark_blue: #1a2634;
 }
 
-@font-face {
-  font-family: made_tommy_thin;
-  src: url("./assets/fonts/made_tommy_thin.otf");
+* {
+  font-family: "Raleway", sans-serif;
 }
-@font-face {
-  font-family: made_tommy;
-  src: url("./assets/fonts/made_tommy_regular.otf");
-}
-@font-face {
-  font-family: made_tommy_medium;
-  src: url("./assets/fonts/made_tommy_medium.otf");
-}
-@font-face {
-  font-family: made_tommy_bold;
-  src: url("./assets/fonts/made_tommy_bold.otf");
+button {
+  span.v-btn__content {
+    font-weight: 700;
+  }
 }
 </style>

@@ -1,39 +1,22 @@
 <template>
-  <v-app-bar
-    :style="
-      scrollPosition > 35 || !isHomeRoute
-        ? { 'background-color': 'white' }
-        : { 'background-color': 'transparent', 'box-shadow': 'unset' }
-    "
-  >
+  <v-app-bar style="background-color: white">
     <v-container>
       <v-row>
         <v-col cols="4" class="d-flex align-center">
           <img
-            :src="require('../../assets/imgs/logo.svg')"
+            :src="require('../../assets/imgs/logo.png')"
             alt="Logo"
             :style="{ height: '80%' }"
           />
         </v-col>
         <v-col class="d-none d-lg-flex align-center justify-end nav_items">
-          <div @click="goTo('/')">HOME</div>
-          <AcadamicDropDown title="ACADAMIC" @goTo="goTo" />
-          <div @click="goTo('/about')">ABOUT</div>
-          <div>
-            <CategoryDropDown title="CATEGORIES" @goTo="goTo" />
+          <div @click="goTo('/')">Home</div>
+          <div @click="goTo('/courses')">Courses</div>
+          <div @click="goTo('/contents')">Contents</div>
+          <div @click="goTo('/')">About Us</div>
+          <div @click="goTo('/')">Contact</div>
+          <div @click="goTo('/')">APN
           </div>
-          <AddDropdown v-if="isAuth" :title="name" @goTo="goTo" />
-          <div
-            class="d-flex align-center justify-center contact_us"
-            @click="goTo('/contact')"
-          >
-            CONTACT US
-          </div>
-
-          <div v-if="!isAuth" @click="goTo('/signin')">SIGN IN</div>
-        </v-col>
-        <v-col class="d-lg-none text-right">
-          <MobileDropdown />
         </v-col>
       </v-row>
     </v-container>
@@ -41,38 +24,11 @@
 </template>
 
 <script>
-import { mapState } from "pinia";
-import { user } from "../../store/user";
-import CategoryDropDown from "./CategoryDropDown.vue";
-import AcadamicDropDown from "./AcadamicDropDown.vue";
-import AddDropdown from "./AddDropDown.vue";
-import MobileDropdown from "./MobileDropdown.vue";
 export default {
-  components: {
-    CategoryDropDown,
-    AcadamicDropDown,
-    AddDropdown,
-    MobileDropdown,
-  },
-  data: () => ({
-    scrollPosition: null,
-  }),
-  computed: {
-    ...mapState(user, ["isAuth", "name"]),
-    isHomeRoute() {
-      return this.$route.path === "/";
-    },
-  },
   methods: {
-    updateScroll() {
-      this.scrollPosition = window.scrollY;
-    },
     goTo(route) {
       this.$router.push(route);
     },
-  },
-  mounted() {
-    window.addEventListener("scroll", this.updateScroll);
   },
 };
 </script>
@@ -83,13 +39,12 @@ export default {
   align-items: center;
   height: 64px;
   padding: 0 0.7rem;
-  font-size: 1rem;
-  font-family: made_tommy_medium;
+  font: bold 1rem "Raleway";
   cursor: pointer;
 }
 .nav_items > div:hover,
 .nav_items > div:active {
-  color: var(--simbolo_red);
+  color: var(--apn_blue);
 }
 div.contact_us {
   color: white;
